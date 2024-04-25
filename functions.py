@@ -63,6 +63,7 @@ def tipo_problema_():
             print("Escolha entre 1, 2, 3 ou 4")
             tipo_problema_()
 
+# Função para cancelar agendamento
 def cancelar_agendamento(n_agendameto):
     confirm = input("\tGostaria de cancelar seu agendamento?(sim ou não):")
     if confirm == "sim":
