@@ -1,61 +1,17 @@
-import random
+#Import das funções
+from functions import *
+#variaveis globais
 pagina = 0
 size = 20
 n_agendamento = 0
 problema  = "vago"
-modelo_carro = "vago"
-# Função para desenhar um quadrado com o tamanho especificado, para utilizar como foto
-def foto(size):
-    print("\n\tTire uma foto do problema do carro")
-    for i in range(10):
-        print("\n\t\t\t\t\t\t\t\t",'*' * size)
-    print("\n\tObrigado!")
+modelo_carro = "vago" 
+data = "07/05/2024"
+data0 = "07/05/2024"
+data1 = "23/05/2024"
+data2 = "30/05/2024"              
 
-def agendamento(tipo_problema):
-    inf = input("\n\t Gostaria de agendar com nossos mecanicos?(sim ou não):")
-    if inf == "sim":
-        ramdom = random.randint(1,100)
-        n_agendamento = ramdom 
-        print(f"\n\tOK foi agendado! Seu numero de agendamento é {n_agendamento}")
-        print(f"\tAgora vá/ou retorne a pagina de agendamento e digite seu numero de\n\t agendamento para informações")
-    elif inf == "não":
-        print("\tOK, até a proxima!")
-    else:
-        print("\tDigite sim ou não.")
-        agendamento(tipo_problema)
-        
-def tipo_problema_():
-    tipo = input("Escolha 1 - Poblema Motor | 2 - Problema Transmissão | 3 - Falha Elétrica | 4 - Problemas freios: ")
-    match tipo:
-        case '1':
-            print
-            foto(20)
-            print("\n\t Certo!Segundo a foto tirada o problema é de superaquecimento do carro,\n\t pode ser um problema sério, pois pode danificar o motor e outros \n\tcomponentes importantes do veículo...")
-            problema = "Poblema Motor"
-            agendamento(problema)
-        case '2':
-            print
-            foto(20)
-            print("\n\t Certo!Segundo a foto tirada o problema é de dificuldade de troca de marcha,\n\t será necessário uma troca dos sincronizadores desgastados...")
-            problema = "Problema Transmissão"
-            agendamento(problema)
-        case '3':
-            print
-            foto(20)
-            print("\n\t Certo!Segundo a foto tirada o problema da bateria do carro\n\t será necesserio troca...")
-            problema = "Falha Elétrica"
-            agendamento(problema)
-        case '4':
-            print
-            foto(20)
-            print("\n\t Certo!Segundo a foto tirada o problema está no desgaste das pastilhas,\n\t será necesserio troca...")
-            problema = "Problemas freios"
-            agendamento(problema)
-        case _:
-            print("Escolha entre 1, 2, 3 ou 4")
-            tipo_problema_()
-
-
+#PAGINA PRINCIPAL/ HOME
 while pagina == 0:
     print("\n")
     print("-" * 88)
@@ -67,10 +23,11 @@ while pagina == 0:
     print("\t  O projeto “Mecânico Virtual” é uma solução criada com \n\t  o intuito de facilitar a comunicação entre cliente e profissional, \n\t  como também tornar todo o processo mais simples, \n\t  com ambas as partes tendo suas necessidades atendidas o tempo todo.")
     print("\n")
     print ("Gostaria de entrar em uma das outras paginas?")
-    opcao = int(input("Escolha 1 - MECÂNICO VIRTUAL | 2 - AGENDAR | 3 - SOBRE NÓS | 4 - FAZER PERGUNTA | 5 - ENCERRAR SESSÃO: "))
+    opcao = input("Escolha 1 - MECÂNICO VIRTUAL | 2 - AGENDAR | 3 - SOBRE NÓS | 4 - FAZER PERGUNTA | 5 - ENCERRAR SESSÃO: ")
     
     match opcao:
-        case 1:
+        #MECÂNICO VIRTUAL 
+        case "1":
            pagina = 1
            while pagina == 1: 
                print("-" * 88)
@@ -89,10 +46,11 @@ while pagina == 0:
                print("\n\t 3 - Falhas no Sistema Elétrico: \n\t\t - Falhas na bateria, alternador ou arranque.\n\t\tProblemas com sistemas de iluminação, sensores, \n\t\tsistemas de som e outros componentes eletrônicos.")
                print("\n\t 4 - Problemas no Sistema de Freios: \n\t\t - Desgaste nas pastilhas ou discos de freio,\n\t\t vazamentos no sistema hidráulico, ou falhas \n\t\t no sistema de assistência de frenagem.")
                print("\n")
-               tipo_problema_()
+               n_agendamento, problema = tipo_problema_()
                pagina = 0
-                        
-        case 2: 
+        
+        #AGENDAR                
+        case "2": 
            pagina = 2
            while pagina == 2: 
                print("-" * 88)
@@ -103,33 +61,73 @@ while pagina == 0:
                print("\n")
                print("\t","-" * 65)
                print("\t\t\t AGENDAMENTO")
-               n = int(input("\n\t Olá, qual seu numero de agendamento? (se não tiver um, digite 0)"))
-               if n == 0:
+               n = input("\n\t Olá, qual seu numero de agendamento? (se não tiver um, digite 0):")
+               if n == "0":
                     print("\n\tVá até a pagina de Mecânico virtual para fazermos um diagnostico \n\tdo seu problema:")
                     pagina = 0
                elif n == n_agendamento:
-                   data = "07/05/2024"
-                   print(f"\n\tInformações do agendamento:\n\t\t -Data: {data}\n\t\t -Modelo do carro: {modelo_carro}\n\t\t -Problema:{problema} \n\t\t -Mecânica: Seu Zê")
+                    mudar_data(data,data1,data2,data0,problema,modelo_carro)
+                    n_agendamento = cancelar_agendamento(n_agendamento)
+                    pagina = 0        
                else:
                    print("\n\tTipo de infomação não aceitavel!") 
                    pagina = 0
-               data = input("Gostaria de mudar a data?(sim ou não)")
-               if data == "sim":
-                   data1 = "23/05/2024"
-                   data2 = "30/05/2024"
-                   
-                    
-                    
-                   
-                   
-
-        case 5:
+        
+        #SOBRE NÓS
+        case "3":
+            pagina = 3
+            while pagina == 3: 
+               print("-" * 88)
+               print("\n")
+               print("-" * 88)
+               print("|*Logo*  HOME  MV  AGENDAR  SOBRE NÒS     (Digíte sua pergunta...   ) *INCONE PERGUNTA*|")
+               print("-" * 88)
+               print("\n")
+               print("\t","-" * 65)
+               print("\t\t\t SOBRE NÓS")
+               print("\n\t|*LOGO*  ANDRÉ GERALDI MARCOLONGO      RM555285|")
+               print("\n\t|*LOGO*  SAMIR HAGE NETO               RM555285|")
+               print("\n\t|*LOGO*  FELIPE LEVY STEPHENS FIDELIX  RM556426|")
+               confirm = input("\nVoltar para HOME?(Escreva sim para voltar): ")
+               if confirm == "sim":
+                    print("-" * 88)
+                    print("\n")
+                    pagina = 0
+               else:
+                    input("Informação inválida ")
+                    pagina = 3
+        
+        #FAZER PERGUNTA
+        case "4":
+            pagina = 4
+            while pagina == 4: 
+               print("-" * 88)
+               print("\n")
+               print("-" * 88)
+               print("|*Logo*  HOME  MV  AGENDAR  SOBRE NÒS     (Digíte sua pergunta...   ) *INCONE PERGUNTA*|")
+               print("-" * 88)
+               print("\n")
+               print("\t","-" * 65)
+               print("\t\t\t DUVIDAS")
+               print("\n\tOlá sou seu assistente virtual, como posso te ajudar?")
+               print("\n\t Aqui estão alguns problemas em que posso te ajudar: ")
+               print("\n\t 1 - Como agendar um serviço?: ")
+               print("\n\t 2 - Quais são as políticas de cancelamento e reembolso?: ")
+               print("\n\t 3 - Como faço para alterar ou cancelar um agendamento existente?: ")
+               print("\n\t 4 - Como posso visualizar ou gerenciar meus agendamentos futuros?: ")
+               print("\n")
+               pagina = duvidas()
+               
+        #ENCERRAR SESSÃO      
+        case "5":
             print("Encerrando...")
             break
-        
-
+    
+        #Caso opção errada    
         case _:
 
             print("\n")
             print("Opção invalida!")
-            print("Escolha um das opções: 1 ou 2 ou 3.")
+            print("Escolha um das opções: 1, 2, 3, 4 ou 5.")
+            print("-" * 88)
+            continue
