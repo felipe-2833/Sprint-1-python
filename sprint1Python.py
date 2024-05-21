@@ -66,7 +66,8 @@ while pagina == 0:
                     print("\n\tVá até a pagina de Mecânico virtual para fazermos um diagnostico \n\tdo seu problema:")
                     pagina = 0
                elif n == n_agendamento:
-                    mudar_data(data,data1,data2,data0,problema,modelo_carro)
+                    data = mudar_data(data,data1,data2,data0,problema,modelo_carro)
+                    
                     n_agendamento = cancelar_agendamento(n_agendamento)
                     pagina = 0        
                else:
